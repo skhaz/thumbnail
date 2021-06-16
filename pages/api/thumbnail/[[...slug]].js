@@ -12,8 +12,6 @@ let browser
 export default async function handler(req, res) {
   const { slug = [] } = req.query
 
-  console.dir(slug.join("/"))
-
   if (!browser) {
     let options
 
@@ -41,7 +39,7 @@ export default async function handler(req, res) {
     const url = (process.env.VERCEL && `https://${process.env.VERCEL_URL}`) || 'http://localhost:3000'
 
     await page.setViewport({ width: 1200, height: 600, deviceScaleFactor: 1 })
-    await page.goto(`${url}?path=${slug.join("/")}`)
+    await page.goto(`${url}?slug=${slug}`)
     await page.evaluateHandle('document.fonts.ready')
 
     const file = await page.screenshot({ quality: 90, type: 'jpeg' })
