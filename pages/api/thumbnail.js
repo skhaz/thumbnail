@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   try {
     page = await browser.newPage()
 
-    const url = `https://${process.env.VERCEL_URL}` || 'http://localhost:3000/'
+    const url = (process.env.VERCEL && `https://${process.env.VERCEL_URL}`) || 'http://localhost:3000'
 
     await page.setViewport({ width: 1200, height: 600, deviceScaleFactor: 1 })
     await page.goto(url)
