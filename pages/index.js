@@ -1,3 +1,14 @@
-export default function Index() {
-  return <h1>Hello world</h1>
+function Index({ data }) {
+
+  return <pre>{JSON.stringify(data)}</pre>
 }
+
+Index.getInitialProps = async (context) => {
+  const { slug } = context.query
+  const response = await fetch(`https://api.github.com/repos/${slug}`)
+  const data = await response.json()
+
+  return { data }
+}
+
+export default Index
