@@ -1,11 +1,11 @@
 function Index({ data }) {
 
-  return <pre>{JSON.stringify(data)}</pre>
+  return <pre>{JSON.stringify(data, null, 2)}</pre>
 }
 
 Index.getInitialProps = async (context) => {
-  const { slug } = context.query
-  const response = await fetch(`https://api.github.com/repos/${slug}`)
+  const { uid } = context.query
+  const response = await fetch(`https://api.github.com/repos/${uid}`)
   const data = await response.json()
 
   return { data }
