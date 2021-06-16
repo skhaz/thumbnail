@@ -15,8 +15,8 @@ export default async function handler(req, res) {
 
     if (process.env.VERCEL) {
       options = {
-        executablePath: await chromium.executablePath,
         args: chromium.args,
+        executablePath: await chromium.executablePath,
         headless: chromium.headless,
       }
     } else {
