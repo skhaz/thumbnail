@@ -1,6 +1,3 @@
 export default function Index() {
-  return (
-    <>
-    </>
-  )
+  return <h1>Hello world</h1>
 }
