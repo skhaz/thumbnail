@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 })
     await page.goto(url)
-    await page.waitForNavigation({ waitUntil: 'networkidle2' })
+    await page.waitForNavigation({ waitUntil: 'networkidle0' })
     await page.evaluateHandle('document.fonts.ready')
 
     const file = await page.screenshot({ quality: 98, type: 'jpeg' })
