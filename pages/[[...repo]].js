@@ -1,7 +1,7 @@
 import querystring from 'querystring'
 import Head from 'next/head'
 
-import getBaseURL from '../helpers/base-url'
+import baseUrl from '../helpers/base-url'
 
 export default function Index({ data }) {
   const { name, owner: { login: owner }, description, stargazers_count: stars, forks_count: forks } = data
@@ -14,7 +14,7 @@ export default function Index({ data }) {
     forks,
   }
 
-  const domain = getBaseURL()
+  const domain = baseUrl()
   const thumbnail = `${domain}/api/thumbnail?${querystring.stringify(query)}`
   const url = [domain, owner, name].join('/')
   const title = [owner, name].join('/')
