@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router'
 
+import { Title } from '../components/Title'
+
 function Thumbnail() {
     const router = useRouter()
-    const { name, owner } = router.query
+    const { owner, name } = router.query
 
-    return <p>{owner}/<b>{name}</b></p>
+    return <Title owner={owner} name={name} />
 }
 
 export default Thumbnail
