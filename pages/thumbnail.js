@@ -1,6 +1,10 @@
-function Thumbnail({ data }) {
+import { useRouter } from 'next/router'
 
-    return <pre>{JSON.stringify(data, null, 2)}</pre>
+function Thumbnail() {
+    const router = useRouter()
+    const { name, owner } = router.query
+
+    return <p>{owner}/<b>{name}</b></p>
 }
 
 export default Thumbnail

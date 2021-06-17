@@ -1,18 +1,43 @@
+import querystring from 'querystring'
 import Head from 'next/head'
 
 import getBaseURL from '../helpers/base-url'
 
 export default function Index({ data }) {
+  const { name, owner, description, stargazers_count: stars, forks_count: forks } = data
+
+  const query = {
+    name,
+    owner: owner.login,
+    description,
+    stars,
+    forks,
+  }
+
+  const domain = getBaseURL()
+  const thumbnail = `${domain}/api/thumbnail?${querystring.stringify(query)}`
+  const url = [domain, owner, name].join('/')
+
   return (
     <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-
       <Head>
-        <title></title>
-        <meta property="og:image" content={`${getBaseURL()}/api/thumbnail/`} />
+        <title>{name}</title>
+        <meta name="description" content={description} />
+
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={name} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={thumbnail} />
         <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="600" />
-        <meta property="og:type" content="object" />
+        <meta property="og:image:height" content="630" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content={domain} />
+        <meta property="twitter:url" content={url} />
+        <meta name="twitter:title" content={name} />
+        <meta name="twitter:description" content={description} />
+        <meta property="twitter:image" content={thumbnail} />
       </Head>
     </div>
   )
