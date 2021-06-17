@@ -17,16 +17,17 @@ export default function Index({ data }) {
   const domain = getBaseURL()
   const thumbnail = `${domain}/api/thumbnail?${querystring.stringify(query)}`
   const url = [domain, owner, name].join('/')
+  const title = [owner, name].join('/')
 
   return (
     <div>
       <Head>
-        <title>{name}</title>
+        <title>{title}</title>
         <meta name="description" content={description} />
 
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={name} />
+        <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={thumbnail} />
         <meta property="og:image:width" content="1200" />
@@ -35,7 +36,7 @@ export default function Index({ data }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content={domain} />
         <meta property="twitter:url" content={url} />
-        <meta name="twitter:title" content={name} />
+        <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta property="twitter:image" content={thumbnail} />
       </Head>
