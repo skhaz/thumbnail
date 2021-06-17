@@ -1,6 +1,8 @@
 import chromium from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
 
+import getBaseURL from '../helpers/base-url'
+
 const executablePaths = {
   darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   linux: '/usr/bin/google-chrome',
@@ -36,10 +38,10 @@ export default async function handler(req, res) {
   try {
     page = await browser.newPage()
 
-    const url = (process.env.VERCEL && `https://${process.env.VERCEL_URL}`) || 'http://localhost:3000'
+    const url = `${getBaseURL()}/thumbnail?uid=${uid.join('/')}`
 
     await page.setViewport({ width: 1200, height: 600, deviceScaleFactor: 1 })
-    await page.goto(`${url}/thumbnail?uid=${uid.join('/')}`)
+    await page.goto(url)
     await page.evaluateHandle('document.fonts.ready')
 
     const file = await page.screenshot({ quality: 90, type: 'jpeg' })
