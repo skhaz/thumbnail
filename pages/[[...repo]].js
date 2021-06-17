@@ -4,11 +4,11 @@ import Head from 'next/head'
 import getBaseURL from '../helpers/base-url'
 
 export default function Index({ data }) {
-  const { name, owner, description, stargazers_count: stars, forks_count: forks } = data
+  const { name, owner: { login: owner }, description, stargazers_count: stars, forks_count: forks } = data
 
   const query = {
     name,
-    owner: owner.login,
+    owner,
     description,
     stars,
     forks,
