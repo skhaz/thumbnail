@@ -15,7 +15,7 @@ export default function Index({ data }) {
   }
 
   const domain = baseUrl()
-  const thumbnail = `${domain}/api/thumbnail?${querystring.stringify(query)}`
+  const thumbnail = `${domain}/api/thumbnail.jpg?${querystring.stringify(query)}`
   const url = [domain, owner, name].join('/')
   const title = [owner, name].join('/')
 
